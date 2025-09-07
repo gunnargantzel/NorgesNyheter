@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Visitor Registration – Kiosk</title>
+
+  <!-- iOS full-screen (PWA-like) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Visitor Check-in">
+
+  <style>
+    html, body {
+      margin: 0; padding: 0; height: 100%; width: 100%;
+      background: #ffffff; overscroll-behavior: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none; user-select: none;
+      touch-action: manipulation;
+    }
+    .wrap {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff;
+    }
+    iframe {
+      border: 0; width: 100vw; height: 100vh;
+    }
+    /* Hide scrollbars on iOS */
+    ::-webkit-scrollbar { display: none; }
+  </style>
+  <script>
+    // Prevent common exits
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('gesturestart', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      // Block refresh/back in some kiosk keyboards
+      if (['F5','F11'].includes(e.key)) e.preventDefault();
+      if (e.metaKey || e.ctrlKey) e.preventDefault();
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <iframe
+      id="app"
+      src="https://apps.powerapps.com/play/e/d17c0905-0627-e2c7-991f-02c12daadd44/a/9ea1564c-8505-4e93-8767-979efdd8ad70?tenantId=647bb407-d412-4d48-b7bf-367c871cfca6&hint=0c7dadab-2204-416a-bbb2-bc353a14d2c3&sourcetime=1757243549724&navbar=off&cmdbar=false&screenColor=white&skipMobileRedirect=1&source=iframe"
+      allow="fullscreen; clipboard-write; autoplay"
+      referrerpolicy="no-referrer">
+    </iframe>
+  </div>
+
+  <!-- Fallback link if iframe is blocked -->
+  <noscript>
+    <p>JavaScript is required. Open the app directly:
+      <a href="https://apps.powerapps.com/play/e/d17c0905-0627-e2c7-991f-02c12daadd44/a/9ea1564c-8505-4e93-8767-979efdd8ad70?tenantId=647bb407-d412-4d48-b7bf-367c871cfca6&hint=0c7dadab-2204-416a-bbb2-bc353a14d2c3&sourcetime=1757243549724
+&navbar=off&cmdbar=false&screenColor=white&skipMobileRedirect=1&source=iframe">Open Power Apps</a></p>
+  </noscript>
+</body>
+</html>
